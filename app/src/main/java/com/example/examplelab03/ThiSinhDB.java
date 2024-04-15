@@ -60,6 +60,25 @@ public class ThiSinhDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateThiSinh(String sbd, ThiSinh thiSinh){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(SBD, thiSinh.getSbd());
+        value.put(HoTen, thiSinh.getHoTen());
+        value.put(Toan, thiSinh.getToan());
+        value.put(Ly, thiSinh.getLy());
+        value.put(Hoa, thiSinh.getHoa());
+        value.put(TongDiem, thiSinh.tongDiem());
+        db.update(TableName, value, SBD + "=?",
+                new String[]{sbd});
+        db.close();
+    }
+    public void deleteThiSinh(String sbd){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "Delete From " + TableName + " Where SBD='" +sbd + "'";
+        db.execSQL(sql);
+        db.close();
+    }
     public ArrayList<ThiSinh> getAllStudent(){
         ArrayList<ThiSinh> list = new ArrayList<>();
         //cau lenh truy van
@@ -81,4 +100,5 @@ public class ThiSinhDB extends SQLiteOpenHelper {
         }
         return list;
     }
+
 }

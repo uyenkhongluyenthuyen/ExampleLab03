@@ -33,6 +33,25 @@ public class SubActivity extends AppCompatActivity {
         btnEdit = findViewById(R.id.btnEdit);
         btnBack = findViewById(R.id.btnBack);
 
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        if(b!=null){
+            String sbd = b.getString("SBD");
+            String hoten = b.getString("HoTen");
+            Float toan = b.getFloat("Toan");
+            Float ly = b.getFloat("Ly");
+            Float hoa = b.getFloat("Hoa");
+
+            edtSBD.setText(sbd);
+            edtHoTen.setText(hoten);
+            edtToan.setText(toan.toString());
+            edtLy.setText(ly.toString());
+            edtHoa.setText(hoa.toString());
+
+        }
+
+
+
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
